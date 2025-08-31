@@ -1,37 +1,60 @@
 #imageCanvas { display: none; }
+
 .magnifier-grid {
   background-image: 
-    linear-gradient(45deg, #334155 25%, transparent 25%),
-    linear-gradient(-45deg, #334155 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #334155 75%),
-    linear-gradient(-45deg, #1e293b 75%, #334155 75%);
+    linear-gradient(45deg, #A78E5D 25%, transparent 25%),
+    linear-gradient(-45deg, #A78E5D 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #A78E5D 75%),
+    linear-gradient(-45deg, #7C8561 75%, #A78E5D 75%);
   background-size: 20px 20px;
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
 }
+
 .magnifier-lens {
-  border: 2px solid #475569;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  border: 2px solid #8C7B6D;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
+
 .color-swatch {
   transition: all 0.2s ease;
+  background-color: #C5A880;
+  color: #1A1A1A;
 }
+
 .color-swatch:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
 .pulse {
   animation: pulse 2s infinite;
 }
+
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
-/* Mobile-specific adjustments */
-@media (max-width: 768px) {
+
+/* Layout adjustments: desktop vs mobile */
+.mobile-stack {
+  display: flex;
+  flex-direction: column; /* default mobile */
+  gap: 2rem;
+}
+
+/* Desktop screens (large screens) */
+@media (min-width: 1024px) {
   .mobile-stack {
-    flex-direction: column;
+    flex-direction: row; /* side by side */
+    align-items: flex-start;
   }
+  .mobile-stack > div:first-child { order: 2; flex: 2; } /* image on right */
+  .mobile-stack > div:last-child { order: 1; flex: 1; }   /* magnifier left */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
   .mobile-full {
     width: 100%;
   }
